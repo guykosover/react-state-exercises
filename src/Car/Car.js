@@ -8,20 +8,49 @@ import './Car.css';
  */
 
 class Car extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			color: ""
+		};
+	}
+
+	selectColor(event) {
+		this.setState({color: event.target.value});
+	}
+
 	render() {
+
+		let color = this.state.color;
+		switch(color){
+			case 'red':
+				color='red';
+				break;
+			case 'blue':
+				color='blue';
+				break;
+			case 'yellow':
+				color='yellow';
+				break;
+			case 'green':
+				color='green';
+			break;
+
+		}
+
 		return (
 			<div>
 				<h1>Choose a color for your car:</h1>
-				<select>
-					<option value="silver">silver</option>
-					<option value="red">red</option>
-					<option value="blue">blue</option>
-					<option value="yellow">yellow</option>
-					<option value="green">green</option>
+				<select onChange={this.selectColor.bind(this)}>
+					<option value='silver'>silver</option>
+					<option value='red'>red</option>
+					<option value='blue'>blue</option>
+					<option value='yellow'>yellow</option>
+					<option value='green' >green</option>
 				</select>
 				<br />
 				<br />
-				<div className="Car-color">Color example</div>
+				<div className={color}>Color example</div>
 			</div>
 		);
 	}

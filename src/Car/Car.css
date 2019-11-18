@@ -1,7 +1,43 @@
-.Car-color {
+.silver {
     width: 80px;
     height: 80px;
     padding: 5px;
     background: silver;
     text-align: center;
 }
+
+
+
+.red{
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    background: red;
+    text-align: center;
+}
+
+.blue {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    background: blue;
+    text-align: center;
+}
+
+.yellow {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    background: yellow;
+    text-align: center;
+}
+
+
+.green {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    background: green;
+    text-align: center;
+}
+

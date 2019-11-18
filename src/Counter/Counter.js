@@ -14,18 +14,39 @@ class Counter extends Component {
 		this.state = {
 			num: 0
 		};
+
 	}
 
 	increase() {
+		if (this.state.num >= 20){
+			return
+		}
 		this.setState({
 			num: this.state.num + 1
 		});
 	}
 
 	decrease() {
+		if (this.state.num <= 0){
+			return
+		}
 		this.setState({
 			num: this.state.num - 1
 		});
+	}
+
+	increaseTen() {
+		if (this.state.num + this.state.num  >= 20){
+			this.setState({num:20})
+			return
+		}
+		this.setState({
+			num: this.state.num +10
+		});
+	}
+
+	reset(){
+		this.setState({num: this.state.num = 0 })
 	}
 
 	render() {
@@ -33,7 +54,9 @@ class Counter extends Component {
 			<div>
 				<h1>Counter: </h1>
 				<button onClick={this.increase.bind(this)}>Increase</button>
+				<button onClick={this.increaseTen.bind(this)}>increaseTen</button>
 				<button onClick={this.decrease.bind(this)}>Decrease</button>
+				<button onClick={this.reset.bind(this)}>reset</button>
 				<span>{this.state.num}</span>
 			</div>
 		);

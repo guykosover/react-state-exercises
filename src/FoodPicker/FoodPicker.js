@@ -1,22 +1,50 @@
 import React, { Component } from 'react';
-
-/**
- * See the component below? there are 4 fields: name, restaurant, meal and desert.
- * Once the user changes the form, it should be reflected on the "Your reservation" paragraph.
- */
+import './FoodPicker.css';
 
 class FoodPicker extends Component {
+	constructor(props){
+		super(props);
+		this.state = {
+			userName:'',
+			favoriteMeal:'',
+			desert: false,
+			restaurantName: '',
+		}
+	}
+
+	desertHandler() {
+		this.setState(state => ({
+			desert: !this.state.desert
+		}));
+	}
+
+	changeNameHandler = (event) => {
+		this.setState({userName: event.target.value});
+	}
+
+	FavoriteMeal = (event) => {
+		this.setState({favoriteMeal: event.target.value});
+	}
+
+	selectRest(event) {
+		this.setState({restaurantName: event.target.value});
+	}
+
+
 	render() {
+
+		const slr  =  this.state.desert ? '' : 'sent';
+
 		return (
 			<div>
 				<h1>Order special meal:</h1>
-				<div>
-					Your name:
-					<input type="text" />
-				</div>
+				<label>
+					Your Name
+					<input onKeyUp={this.changeNameHandler.bind(this)} type="text" />
+				</label>
 				<div>
 					Choose restaurant:
-					<select>
+					<select onChange={this.selectRest.bind(this)}>
 						<option value="Frangelico">Frangelico</option>
 						<option value="Mina Tomei">Mina Tomei</option>
 						<option value="Rak Basar">Rak Basar</option>
@@ -25,19 +53,20 @@ class FoodPicker extends Component {
 				</div>
 				<div>
 					Favorite meal:
-					<input type="text" />
+					<input type="text" onKeyUp={this.FavoriteMeal.bind(this)}/>
 				</div>
 				<div>
 					Want a desert?
-					<input type="checkbox" />
+					<input type="checkbox" onClick={this.desertHandler.bind(this)}/>
+
 				</div>
 
 				<div>
 					<h2>Your reservation:</h2>
-					Hi [NAME]! <br />
-					We are glad you want to reserve a table at [RESTAURANT].<br />
-					We will make sure that your favorite meal, [MEAL] is available.<br />
-					Additionally, our chef will make a special desert for you!<br />
+					Hi {this.state.userName} <br />
+					We are glad you want to reserve a table at: {this.state.restaurantName} <br />
+					We will make sure that your favorite meal,{this.state.favoriteMeal} is available.<br />
+					<span className= {slr} > Additionally, our chef will make a special desert for you </span> <br />
 				</div>
 			</div>
 		);
@@ -45,3 +74,4 @@ class FoodPicker extends Component {
 }
 
 export default FoodPicker;
+

@@ -1,17 +1,38 @@
 import React, { Component } from 'react';
 
-/**
- * Make a clock component that updates every second!
- * It should look like in the attached image: src/Clock/clock.gif
- * Open the image to see the animation.
- */
-
 class Clock extends Component {
+
+	constructor(props) {
+		super(props);
+			this.state = {
+			date: this.getTime()
+		};
+	}
+
+	//set timer
+	componentDidMount() {
+			this.timer = setInterval(() => {
+			this.setState({date: this.getTime()});
+			console.log('hey');
+		}, 1000);
+	}
+
+
+	//remove timer
+	componentWillUnmount() {
+		clearInterval(this.timer);
+	}
+
+	//fetch time component
+	getTime() {
+		return new Date().toString();
+	}
+
 	render() {
 		return (
-			<div>
+			<div >
 				<h1>Clock</h1>
-				The time is:
+				<span>The time is: {this.state.date}</span>
 			</div>
 		);
 	}
